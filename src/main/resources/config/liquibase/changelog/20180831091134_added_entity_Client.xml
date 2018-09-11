@@ -35,23 +35,22 @@
             </column>
 
             <column name="email" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
 
             <column name="city_id" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="false" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        </changjeeSet>
 
-        
-    <changeSet>
-    <loadData encoding="UTF-8"
-                  file="config/liquibase/client.csv"
-                  separator=";"
-                  tableName="client"/>
+        <loadData encoding="UTF-8"
+            file="config/liquibase/client.csv"
+            separator=";"
+            tableName="client">
+        </loadData>   
+                        
     </changeSet>
 
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

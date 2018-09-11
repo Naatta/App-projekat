@@ -32,7 +32,7 @@
                 <td>{{client.email}}</td>
                 <td>
                     <div *ngIf="client.city">
-                        <a [routerLink]="['../city', client.city?.id, 'view' ]" >{{client.city?.nname}}</a>
+                        <a [routerLink]="['../city', client.city?.id, 'view' ]" >{{client.city?.name}}</a>
                     </div>
                 </td>
                 <td class="text-right">

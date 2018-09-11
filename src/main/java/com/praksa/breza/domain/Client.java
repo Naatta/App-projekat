@@ -33,11 +33,11 @@ public class Client implements Serializable {
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 
-    @NotNull
-    @Column(name = "email", nullable = false)
+    @Column(name = "email")
     private String email;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties("")
     private City city;
 

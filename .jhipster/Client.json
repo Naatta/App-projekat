@@ -6,6 +6,9 @@
             "relationshipName": "city",
             "otherEntityName": "city",
             "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
             "otherEntityField": "name"
         }
     ],
@@ -33,10 +36,8 @@
         },
         {
             "fieldName": "email",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "String"
+            
         }
     ],
     "changelogDate": "20180831091134",

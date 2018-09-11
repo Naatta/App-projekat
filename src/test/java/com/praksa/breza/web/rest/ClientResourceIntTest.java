@@ -3,6 +3,7 @@ package com.praksa.breza.web.rest;
 import com.praksa.breza.BrezaApp;
 
 import com.praksa.breza.domain.Client;
+import com.praksa.breza.domain.City;
 import com.praksa.breza.repository.ClientRepository;
 import com.praksa.breza.web.rest.errors.ExceptionTranslator;
 
@@ -94,6 +95,11 @@ public class ClientResourceIntTest {
             .address(DEFAULT_ADDRESS)
             .phoneNumber(DEFAULT_PHONE_NUMBER)
             .email(DEFAULT_EMAIL);
+        // Add required entity
+        City city = CityResourceIntTest.createEntity(em);
+        em.persist(city);
+        em.flush();
+        client.setCity(city);
         return client;
     }
 
@@ -198,24 +204,6 @@ public class ClientResourceIntTest {
 
     @Test
     @Transactional
-    public void checkEmailIsRequired() throws Exception {
-        int databaseSizeBeforeTest = clientRepository.findAll().size();
-        // set the field null
-        client.setEmail(null);
-
-        // Create the Client, which fails.
-
-        restClientMockMvc.perform(post("/api/clients")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(client)))
-            .andExpect(status().isBadRequest());
-
-        List<Client> clientList = clientRepository.findAll();
-        assertThat(clientList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void getAllClients() throws Exception {
         // Initialize the database
         clientRepository.saveAndFlush(client);
@@ -296,7 +284,7 @@ public class ClientResourceIntTest {
 
         // Create the Client
 
-        // If the entity doesn't have an ID, it will be created instead of just being updated
+        // If the entity doesn't have an ID, it will throw BadRequestAlertException 
         restClientMockMvc.perform(put("/api/clients")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(client)))
