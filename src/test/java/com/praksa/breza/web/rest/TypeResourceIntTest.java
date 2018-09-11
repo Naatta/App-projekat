@@ -134,6 +134,24 @@ public class TypeResourceIntTest {
 
     @Test
     @Transactional
+    public void checkNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = typeRepository.findAll().size();
+        // set the field null
+        type.setName(null);
+
+        // Create the Type, which fails.
+
+        restTypeMockMvc.perform(post("/api/types")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(type)))
+            .andExpect(status().isBadRequest());
+
+        List<Type> typeList = typeRepository.findAll();
+        assertThat(typeList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllTypes() throws Exception {
         // Initialize the database
         typeRepository.saveAndFlush(type);
@@ -206,7 +224,7 @@ public class TypeResourceIntTest {
 
         // Create the Type
 
-        // If the entity doesn't have an ID, it will be created instead of just being updated
+        // If the entity doesn't have an ID, it will throw BadRequestAlertException 
         restTypeMockMvc.perform(put("/api/types")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(type)))

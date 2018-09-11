@@ -8,7 +8,9 @@
         {
             "fieldName": "name",
             "fieldType": "String",
-            "fieldValidateRules": []
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "description",

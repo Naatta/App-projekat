@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -43,7 +44,7 @@ public class TypeResource {
      */
     @PostMapping("/types")
     @Timed
-    public ResponseEntity<Type> createType(@RequestBody Type type) throws URISyntaxException {
+    public ResponseEntity<Type> createType(@Valid @RequestBody Type type) throws URISyntaxException {
         log.debug("REST request to save Type : {}", type);
         if (type.getId() != null) {
             throw new BadRequestAlertException("A new type cannot already have an ID", ENTITY_NAME, "idexists");
@@ -65,7 +66,7 @@ public class TypeResource {
      */
     @PutMapping("/types")
     @Timed
-    public ResponseEntity<Type> updateType(@RequestBody Type type) throws URISyntaxException {
+    public ResponseEntity<Type> updateType(@Valid @RequestBody Type type) throws URISyntaxException {
         log.debug("REST request to update Type : {}", type);
         if (type.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
