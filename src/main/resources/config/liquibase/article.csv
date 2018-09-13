@@ -2,6 +2,6 @@ id;name;article_number;price;available_amount;type_id
 1;olovka obicna;101;50.00;120;2
 2;olovka patent;102;200.00;80;2
 3;sveska A4 linija;103;129.00;200;1
-4;sveska A4 kvadrat;104;129.00;190;1
-5;sveska A5 linija;105;89.99;123;1
+4;sveska A4 kvadrat;104;129.00;190;null
+5;sveska A5 linija;105;89.99;123;null
 6;sveska A5 kvadrat;106;89.99;55;1

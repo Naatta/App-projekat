@@ -43,7 +43,11 @@ export class TypeComponent implements OnInit, OnDestroy {
         this.typeService.query().subscribe(
             (res: HttpResponse<IType[]>) => {
                 this.types = res.body;
-                this.data = new LocalDataSource(res.body);
+                this.data = new LocalDataSource();
+                for (const type of res.body) {
+                    type.description = type.description ? type.description : '/';
+                    this.data.add(type);
+                }
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
