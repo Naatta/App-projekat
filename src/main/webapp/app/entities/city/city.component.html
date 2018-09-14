@@ -56,6 +56,7 @@
     <ng2-smart-table 
         [settings]="settings"
         [source]="data"
-        (create)="onCreate()">
+        (create)="onCreate()"
+        (custom)="onCustom($event)">
     </ng2-smart-table>
 </div>

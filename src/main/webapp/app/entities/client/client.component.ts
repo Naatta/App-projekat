@@ -23,6 +23,24 @@ export class ClientComponent implements OnInit, OnDestroy {
         add: {
             addButtonContent: 'Create a New Client'
         },
+        actions: {
+            edit: false,
+            delete: false,
+            custom: [
+                {
+                    name: 'view',
+                    title: 'View '
+                },
+                {
+                    name: 'edit',
+                    title: 'Edit '
+                },
+                {
+                    name: 'delete',
+                    title: 'Delete '
+                }
+            ]
+        },
         columns: {
             id: {
                 title: 'ID'
@@ -94,5 +112,15 @@ export class ClientComponent implements OnInit, OnDestroy {
 
     onCreate() {
         this.router.navigate(['client/new']);
+    }
+
+    onCustom(event) {
+        if (event.action === 'view') {
+            this.router.navigate(['client/' + event.data.id + '/view']);
+        } else if (event.action === 'edit') {
+            this.router.navigate(['client/' + event.data.id + '/edit']);
+        } else if (event.action === 'delete') {
+            this.router.navigate([{ outlets: { popup: 'client/' + event.data.id + '/delete' } }]);
+        }
     }
 }

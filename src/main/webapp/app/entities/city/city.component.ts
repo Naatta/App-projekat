@@ -23,6 +23,24 @@ export class CityComponent implements OnInit, OnDestroy {
         add: {
             addButtonContent: 'Create a New City'
         },
+        actions: {
+            edit: false,
+            delete: false,
+            custom: [
+                {
+                    name: 'view',
+                    title: 'View '
+                },
+                {
+                    name: 'edit',
+                    title: 'Edit '
+                },
+                {
+                    name: 'delete',
+                    title: 'Delete '
+                }
+            ]
+        },
         columns: {
             id: {
                 title: 'ID'
@@ -81,5 +99,15 @@ export class CityComponent implements OnInit, OnDestroy {
 
     onCreate() {
         this.router.navigate(['city/new']);
+    }
+
+    onCustom(event) {
+        if (event.action === 'view') {
+            this.router.navigate(['city/' + event.data.id + '/view']);
+        } else if (event.action === 'edit') {
+            this.router.navigate(['city/' + event.data.id + '/edit']);
+        } else if (event.action === 'delete') {
+            this.router.navigate([{ outlets: { popup: 'city/' + event.data.id + '/delete' } }]);
+        }
     }
 }
