@@ -24,6 +24,24 @@ export class PositionComponent implements OnInit, OnDestroy {
         add: {
             addButtonContent: 'Create a New Position'
         },
+        actions: {
+            edit: false,
+            delete: false,
+            custom: [
+                {
+                    name: 'view',
+                    title: 'View '
+                },
+                {
+                    name: 'edit',
+                    title: 'Edit '
+                },
+                {
+                    name: 'delete',
+                    title: 'Delete '
+                }
+            ]
+        },
         columns: {
             id: {
                 title: 'ID'
@@ -79,5 +97,15 @@ export class PositionComponent implements OnInit, OnDestroy {
 
     onCreate() {
         this.router.navigate(['position/new']);
+    }
+
+    onCustom(event) {
+        if (event.action === 'view') {
+            this.router.navigate(['position/' + event.data.id + '/view']);
+        } else if (event.action === 'edit') {
+            this.router.navigate(['position/' + event.data.id + '/edit']);
+        } else if (event.action === 'delete') {
+            this.router.navigate([{ outlets: { popup: 'position/' + event.data.id + '/delete' } }]);
+        }
     }
 }

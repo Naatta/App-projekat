@@ -23,6 +23,24 @@ export class TypeComponent implements OnInit, OnDestroy {
         add: {
             addButtonContent: 'Create a New Type'
         },
+        actions: {
+            edit: false,
+            delete: false,
+            custom: [
+                {
+                    name: 'view',
+                    title: 'View '
+                },
+                {
+                    name: 'edit',
+                    title: 'Edit '
+                },
+                {
+                    name: 'delete',
+                    title: 'Delete '
+                }
+            ]
+        },
         columns: {
             id: {
                 title: 'ID'
@@ -85,5 +103,15 @@ export class TypeComponent implements OnInit, OnDestroy {
 
     onCreate() {
         this.router.navigate(['type/new']);
+    }
+
+    onCustom(event) {
+        if (event.action === 'view') {
+            this.router.navigate(['type/' + event.data.id + '/view']);
+        } else if (event.action === 'edit') {
+            this.router.navigate(['type/' + event.data.id + '/edit']);
+        } else if (event.action === 'delete') {
+            this.router.navigate([{ outlets: { popup: 'type/' + event.data.id + '/delete' } }]);
+        }
     }
 }
