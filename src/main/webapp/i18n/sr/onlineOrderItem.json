@@ -18,7 +18,8 @@
             },
             "orderAmount": "Order Amount",
             "itemPrice": "Item Price",
-            "onlineOrder": "Online Order"
+            "onlineOrder": "Online Order",
+            "article": "Article"
         }
     }
 }

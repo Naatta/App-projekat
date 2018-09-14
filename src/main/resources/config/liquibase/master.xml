@@ -18,5 +18,6 @@
     <include file="config/liquibase/changelog/20180830103010_added_entity_constraints_Article.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180913112137_added_entity_constraints_Employee.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180914133038_added_entity_constraints_OnlineOrderItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180914133037_added_entity_constraints_OnlineOrder.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
