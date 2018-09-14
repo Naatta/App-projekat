@@ -51,5 +51,9 @@
             </tbody>
         </table> -->
     </div>
-    <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+    <ng2-smart-table
+       [settings]="settings" 
+       [source]="data"
+       (create)="onCreate()">
+    </ng2-smart-table>
 </div>

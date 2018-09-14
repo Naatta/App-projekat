@@ -7,6 +7,7 @@ import { IClient } from 'app/shared/model/client.model';
 import { Principal } from 'app/core';
 import { ClientService } from './client.service';
 import { LocalDataSource } from 'ng2-smart-table';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'jhi-client',
@@ -18,6 +19,10 @@ export class ClientComponent implements OnInit, OnDestroy {
     eventSubscriber: Subscription;
 
     settings = {
+        mode: 'external',
+        add: {
+            addButtonContent: 'Create a New Client'
+        },
         columns: {
             id: {
                 title: 'ID'
@@ -45,7 +50,8 @@ export class ClientComponent implements OnInit, OnDestroy {
         private clientService: ClientService,
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
-        private principal: Principal
+        private principal: Principal,
+        private router: Router
     ) {}
 
     loadAll() {
@@ -84,5 +90,9 @@ export class ClientComponent implements OnInit, OnDestroy {
 
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
+    }
+
+    onCreate() {
+        this.router.navigate(['client/new']);
     }
 }

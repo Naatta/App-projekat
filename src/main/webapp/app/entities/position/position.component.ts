@@ -8,6 +8,7 @@ import { Principal } from 'app/core';
 import { PositionService } from './position.service';
 import { LocalDataSource } from 'ng2-smart-table';
 import { LocaleDataIndex } from '@angular/common/src/i18n/locale_data';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'jhi-position',
@@ -19,6 +20,10 @@ export class PositionComponent implements OnInit, OnDestroy {
     eventSubscriber: Subscription;
 
     settings = {
+        mode: 'external',
+        add: {
+            addButtonContent: 'Create a New Position'
+        },
         columns: {
             id: {
                 title: 'ID'
@@ -34,7 +39,8 @@ export class PositionComponent implements OnInit, OnDestroy {
         private positionService: PositionService,
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
-        private principal: Principal
+        private principal: Principal,
+        private router: Router
     ) {}
 
     loadAll() {
@@ -69,5 +75,9 @@ export class PositionComponent implements OnInit, OnDestroy {
 
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
+    }
+
+    onCreate() {
+        this.router.navigate(['position/new']);
     }
 }

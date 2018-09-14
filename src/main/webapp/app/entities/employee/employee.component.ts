@@ -7,6 +7,7 @@ import { IEmployee } from 'app/shared/model/employee.model';
 import { Principal } from 'app/core';
 import { EmployeeService } from './employee.service';
 import { LocalDataSource } from 'ng2-smart-table';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'jhi-employee',
@@ -18,6 +19,10 @@ export class EmployeeComponent implements OnInit, OnDestroy {
     eventSubscriber: Subscription;
 
     settings = {
+        mode: 'external',
+        add: {
+            addButtonContent: 'Create a New Employee'
+        },
         columns: {
             id: {
                 title: 'ID'
@@ -36,7 +41,8 @@ export class EmployeeComponent implements OnInit, OnDestroy {
         private employeeService: EmployeeService,
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
-        private principal: Principal
+        private principal: Principal,
+        private router: Router
     ) {}
 
     loadAll() {
@@ -76,5 +82,9 @@ export class EmployeeComponent implements OnInit, OnDestroy {
 
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
+    }
+
+    onCreate() {
+        this.router.navigate(['employee/new']);
     }
 }

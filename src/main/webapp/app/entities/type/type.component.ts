@@ -7,6 +7,7 @@ import { IType } from 'app/shared/model/type.model';
 import { Principal } from 'app/core';
 import { TypeService } from './type.service';
 import { LocalDataSource } from 'ng2-smart-table';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'jhi-type',
@@ -18,6 +19,10 @@ export class TypeComponent implements OnInit, OnDestroy {
     eventSubscriber: Subscription;
 
     settings = {
+        mode: 'external',
+        add: {
+            addButtonContent: 'Create a New Type'
+        },
         columns: {
             id: {
                 title: 'ID'
@@ -36,7 +41,8 @@ export class TypeComponent implements OnInit, OnDestroy {
         private typeService: TypeService,
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
-        private principal: Principal
+        private principal: Principal,
+        private router: Router
     ) {}
 
     loadAll() {
@@ -75,5 +81,9 @@ export class TypeComponent implements OnInit, OnDestroy {
 
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
+    }
+
+    onCreate() {
+        this.router.navigate(['type/new']);
     }
 }
