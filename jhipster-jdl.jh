@@ -1,0 +1,19 @@
+
+
+entity OnlineOrder {
+    address String required 
+    phoneNumber String required
+    totalPrice Double
+}
+
+entity OnlineOrderItem {
+     orderAmount Double required
+     itemPrice Double
+}
+
+relationship ManyToOne {
+   OnlineOrderItem{onlineOrder} to OnlineOrder
+
+}
+
+
