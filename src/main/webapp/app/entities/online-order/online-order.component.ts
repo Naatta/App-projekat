@@ -21,7 +21,7 @@ export class OnlineOrderComponent implements OnInit, OnDestroy {
     settings = {
         mode: 'external',
         add: {
-            addButtonContent: 'Create a New Article'
+            addButtonContent: 'Create a New Online Order'
         },
         actions: {
             edit: false,
@@ -78,7 +78,7 @@ export class OnlineOrderComponent implements OnInit, OnDestroy {
                 this.onlineOrders = res.body;
                 this.data = new LocalDataSource();
                 for (const onlineOrder of res.body) {
-                    onlineOrder.cityName = onlineOrder.city.name; //zasto ne prikazuje gradove
+                    onlineOrder.cityName = onlineOrder.city.name;
                     onlineOrder.clientName = onlineOrder.client.name;
                     this.data.add(onlineOrder);
                 }
