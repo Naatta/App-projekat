@@ -84,9 +84,9 @@ public class OnlineOrderItemResource {
      */
     @GetMapping("/online-order-items")
     @Timed
-    public List<OnlineOrderItem> getAllOnlineOrderItems() {
-        log.debug("REST request to get all OnlineOrderItems");
-        return onlineOrderItemRepository.findAll();
+    public List<OnlineOrderItem> getOnlineOrderItemsByOnlineOrderId(@PathVariable Long onlineOrderId) {
+        log.debug("REST request to get OnlineOrderItems By OnlineOrder Id : {}", onlineOrderId);
+         return onlineOrderItemRepository.findByOnlineOrderId(onlineOrderId);
     }
 
     /**

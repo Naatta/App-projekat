@@ -76,7 +76,7 @@ export class OnlineOrderItemComponent implements OnInit, OnDestroy {
         this.route.params.subscribe(params => {
             this.onlineOrderId = params['id'];
         });
-        this.onlineOrderItemService.query().subscribe(
+        this.onlineOrderItemService.findByOnlineOrderId(this.onlineOrderId).subscribe(
             (res: HttpResponse<IOnlineOrderItem[]>) => {
                 this.onlineOrderItems = res.body;
                 this.data = new LocalDataSource();
